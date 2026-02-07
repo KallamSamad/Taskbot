@@ -126,3 +126,33 @@ body{
 .nav{
     background-color: rgb(91, 0, 0);
 }
+
+.signin input[type="text"],
+.signin input[type="password"],
+.signin input[type="submit"] {
+  width: 100%;               
+  box-sizing: border-box;    
+  padding: 5px;              
+  margin-top: 5px;           
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.signin {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;              
+  max-width: 300px;          
+  padding: 30px;
+  border-radius: 8px;
+}
+.signinhead{
+    padding: 20px;
+}
+
+.submitbtn{
+    background-color: rgb(91, 0, 0);
+    color: #E6F0EC;
+
+}

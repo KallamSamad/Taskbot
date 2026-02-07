@@ -58,8 +58,20 @@
         </div>
         
         
-        <div class="right">Devilsdwdaasdasjho</div>
-        
+        <div class="right">
+            <h1 class="signinhead">Sign In </h1>
+            <div class="signin">
+            <form method="POST" action="signin.php">
+            <label>Username</label>
+            <input type="text" required placeholder="Enter Username Here">
+
+            <label>Password</label>
+            <input type="password" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$" required  oninvalid="this.setCustomValidity('Password must be at least 8 characters and include an uppercase letter, a number, and a special character.')" oninput="this.setCustomValidity('')" placeholder="Enter password here">        
+            <input class="submitbtn" type="submit" value="submit">
+        </form>
+        </div>
+        <p class="paragraph">Not got an account? <a style="color:maroon" href="#">Sign up</a></p>
+        </div>
         </div>
 <div class="footer">By Kallam Samad 2026 </div>
 </body>
