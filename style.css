@@ -1,0 +1,29 @@
+.header{
+    display: flex;
+    height:100vh;
+    width: 100vw;
+}
+
+
+.left{
+    width: 33vw;
+    background-image: url(Assets/Images/waterfall.webp);
+      background-size: cover;        
+      background-position: center;   
+      background-repeat: no-repeat; 
+    
+}
+.middle{
+    width: 60vw;
+    background-color: white;
+}
+.right{
+    width: 33vw;
+    background-color: blue;
+}
+
+.trilayer{
+    display: flex;
+    flex-direction: column;
+
+}
