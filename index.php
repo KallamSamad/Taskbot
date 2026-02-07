@@ -17,7 +17,7 @@
         <div class="middle">
             <div class="quadlayer">
                 <div class="layer1">
-                    <h1 style="text-align:center">Taskbot</h1>
+                    <h1 style="text-align:center"><b>Taskbot</b></h1>
                     <img class="logo" src="Assets/Images/logo.png" alt="logo of a green robot with a check marked">
                 </div>
                    <?php
