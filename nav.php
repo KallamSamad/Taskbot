@@ -14,13 +14,13 @@
         </li>
 
           <li class="nav-item dropdown">
-        <a class="nav-link text-white" href="index.php">About</a>
+        <a class="nav-link text-white" href="index.php">FAQ</a>
 
                   <li class="nav-item dropdown">
         <a class="nav-link text-white" href="index.php">Contact</a>
 
                   <li class="nav-item dropdown">
-        <a class="nav-link text-white" href="index.php">FAQ</a>
+        <a class="nav-link text-white" href="index.php">Acessibilty </a>
 
           </li>
 
