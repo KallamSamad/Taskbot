@@ -11,15 +11,20 @@
       background-size: cover;        
       background-position: center;   
       background-repeat: no-repeat; 
+      border-radius: 10px;
     
 }
 .middle{
     width: 60vw;
-    background-color: white;
+    background-color: rgb(237, 218, 218);
+    border-radius: 10px;
+
 }
 .right{
     width: 33vw;
-    background-color: blue;
+    background-color: #1F3D2B;
+    border-radius: 10px;
+
 }
 
 .trilayer{

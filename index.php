@@ -11,7 +11,7 @@
         
     
         <div class="left">
-                <img class="waterfall" alt="Image of a waterfall">
+                <img class="waterfall">
         </div>
         
         <div class="middle">
