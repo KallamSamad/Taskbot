@@ -39,7 +39,15 @@
                 </div>
                  <p class="paragraph">You can <b>group</b> similar tasks into a bigger task list to share with users who you are working with. <i>Great</i> for <b>teamwork</b>.</p>
 
+
+                  <div class="group">
+                <img src="Assets/Images/dart.jpg" alt="An image of a dartboard " height="50px">    
+                <h2>Priority</h2>
                 </div>
+                 <p class="paragraph">You can <b>quantify</b> which tasks are more important than others, allowing seamless priotitisation.</p>
+                </div>
+
+
                 <div class="layer4">
 
                 </div>

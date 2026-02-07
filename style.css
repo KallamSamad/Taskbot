@@ -79,16 +79,14 @@ body{
 .layer4{
 
     display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #045804;
     flex-direction: column;
-    width: 50vw;
+    width: 50.3vw;
         background-image: url(Assets/Images/page.webp);
       background-size: cover;        
       background-position: center;   
       background-repeat: no-repeat; 
-      height: 25vh;
+      height: 10vh;
+      
   
 }
 
