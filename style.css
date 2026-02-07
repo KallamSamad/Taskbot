@@ -155,5 +155,6 @@ body{
     background-color: rgb(91, 0, 0);
     color: #E6F0EC;
     height: 50px;
+    font-size: large !important;
 
 }
