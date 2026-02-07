@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
     <title>TaskBot</title>
 </head>
 <body>
     <div class="header">
-        
-    
         <div class="left">
                 <img class="waterfall">
         </div>
@@ -21,6 +20,9 @@
                     <h1 style="text-align:center">Taskbot</h1>
                     <img class="logo" src="Assets/Images/logo.png" alt="logo of a green robot with a check marked">
                 </div>
+                   <?php
+    require_once 'nav.php';
+    ?>
                 <div class="layer2">
                 <h2 style="padding-top:30px;">What is Taskbot?</h2>
                 <p class="paragraph">Taskbot is a very intuitive and structured way of organising tasks. Be it day-to-day "to do lists" to planning a project for your work. If you want an effiecnt way of organising your tasks, Taskbot is the app!</p>

@@ -49,7 +49,7 @@ body{
 .layer1{
     display: flex;
     background-color:  #efd553;
-    width: 50vw;
+    width: 51vw;
     justify-content:center;
     align-items: center;
     border: solid 1px;
@@ -80,12 +80,12 @@ body{
 
     display: flex;
     flex-direction: column;
-    width: 50.3vw;
+    width: 50.7vw;
         background-image: url(Assets/Images/page.webp);
       background-size: cover;        
       background-position: center;   
       background-repeat: no-repeat; 
-      height: 10vh;
+      height: 24vh;
       opacity: 80%;
       
   
@@ -104,7 +104,8 @@ body{
 }
 
 .footer{
-    background-color: #1F3D2B;
+    background-color: rgb(91, 0, 0);
+;
     color: #E6F0EC;
 }
 
@@ -120,4 +121,8 @@ body{
 .group{
     display: flex;
     flex-direction: row;
+}
+
+.nav{
+    background-color: rgb(91, 0, 0);
 }
