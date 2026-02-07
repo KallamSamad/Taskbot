@@ -1,7 +1,12 @@
+body{
+    background-color: #E6F0EC;
+    margin: 0;
+}
 .header{
     display: flex;
     height:100vh;
     width: 100vw;
+ 
 }
 
 
@@ -11,24 +16,109 @@
       background-size: cover;        
       background-position: center;   
       background-repeat: no-repeat; 
-      border-radius: 10px;
+      border-radius: 5px;
+      border: solid 1px;
     
 }
 .middle{
     width: 60vw;
-    background-color: rgb(237, 218, 218);
-    border-radius: 10px;
+    background-color: #E6F0EC;
+    border-radius: 5px;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+
+ 
 
 }
 .right{
     width: 33vw;
-    background-color: #1F3D2B;
-    border-radius: 10px;
+    background-color: #9FB69A;
+    border-radius: 2px;
+    
 
 }
 
 .trilayer{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    
+}
+.layer1{
+    display: flex;
+    background-color:  #efd553;
+    width: 50vw;
+    justify-content:center;
+    align-items: center;
+    border: solid 1px;
+    color: #045804;
+    flex-direction: row;
+    gap: 30px;
+    padding: 5px;
+    height: 17vh;
+}
+.layer2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #045804;
+    flex-direction: column;
+  
+}
+.layer3{
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #045804;
+    flex-direction: column;
+  
+}
+.layer4{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #045804;
+    flex-direction: column;
+    width: 50vw;
+        background-image: url(Assets/Images/page.webp);
+      background-size: cover;        
+      background-position: center;   
+      background-repeat: no-repeat; 
+      height: 25vh;
+  
+}
+
+.circle{
+    border-radius: 900px;
+    border: 2px solid black;
+    
+}
+.logo{
+    height: 150px;
+    width: 150px;
+    border-radius: 150px;
+    border: 2px solid black;
+}
+
+.footer{
+    background-color: #1F3D2B;
+    color: #E6F0EC;
+}
+
+.paragraph{
+    padding-left: 40px;
+    padding-right: 40px;
+    font-size: large;
+}
+.dead{
+    display: flex;
+    flex-direction: row;
+}
+.group{
+    display: flex;
+    flex-direction: row;
 }
