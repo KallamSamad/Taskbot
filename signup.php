@@ -94,15 +94,17 @@
                 }
                 else{
                     document.querySelector('.submitbtn').disabled=false;
-                    error.style.display="hidden";
+                    error.style.display="none";
 
                 }
             }
             </script>
                                  <?php 
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submitbtn'])) {
             $pw=$_POST["pw"];
             $confpw=$_POST["confpw"];
             $confirm=$pw==$confpw ? " ":"Passwords must match";
+            }
 
 
         
