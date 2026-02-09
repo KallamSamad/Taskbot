@@ -1,10 +1,43 @@
+
 <?php 
-$db = new SQLite3("TM.db");
+ 
+session_start();
+$message=' ';
+$db = new SQLite3("C:/xampp/htdocs/TaskBot/database.db");
 $db->exec("PRAGMA foreign_keys = ON;");
 
 if($db){
     echo "Connection successful";
 }
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username=$_POST['username']??"";
+    $password=$_POST['password']??"";
+
+    $stmt=$db->prepare("
+    SELECT Username, HashedPassword FROM Credentials
+    WHERE Username=:username;");
+    $stmt->bindValue(":username", $username, SQLITE3_TEXT);
+ 
+    $result = $stmt->execute();
+    $row = $result->fetchArray(SQLITE3_ASSOC);
+        if (!$row) {
+        $message= "No user found";
+    }
+    else{
+    $hashedPassword= $row["HashedPassword"];
+        if(password_verify($password, $hashedPassword)){
+        $message= 'login successful';
+    } else{
+        $message= "Your password is incorrect!";}
+                  }
+    }
+ 
+    echo "\n $message";
+                
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,12 +102,12 @@ if($db){
         <div class="right">
             <h1 class="signinhead">Sign In </h1>
             <div class="signin">
-            <form method="POST" action="signin.php">
-            <label>Username</label>
-            <input type="text" required placeholder="Enter Username Here">
+            <form method="POST">
+            <label for="username">Username</label>
+            <input name="username" type="text" required placeholder="Enter Username Here">
 
-            <label>Password</label>
-            <input type="password" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$" required  oninvalid="this.setCustomValidity('Password must be at least 8 characters and include an uppercase letter, a number, and a special character.')" oninput="this.setCustomValidity('')" placeholder="Enter password here">        
+            <label for="password">Password</label>
+            <input name="password" type="password" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$" required  oninvalid="this.setCustomValidity('Password must be at least 8 characters and include an uppercase letter, a number, and a special character.')" oninput="this.setCustomValidity('')" placeholder="Enter password here">        
             <input class="submitbtn" type="submit" value="Submit">
         </form>
         </div>

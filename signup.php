@@ -1,4 +1,5 @@
 <?php 
+session_start();
 $db = new SQLite3("TM.db");
 $db->exec("PRAGMA foreign_keys = ON;");
 
