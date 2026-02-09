@@ -63,9 +63,23 @@
             <h1 class="signinhead">Sign In </h1>
             <div class="signin">
             <form method="POST" >
-            <label>Username</label>
+            <label>Username:</label>
             <input type="text" required placeholder="Enter Username Here">
+            <label>Display Name:</label>
+            <input type="text" required placeholder="Enter Display Name Here">
+            <label>First name</label>
+            <input type="text" required placeholder="Enter First Name Here">
+            <label>Middle name:</label>
+            <input type="text"  placeholder="Enter Middle Name Here">
+            <label>Last name</label>
+            <input type="text" required placeholder="Enter Last Name Here">
 
+            <label>Email:</label>
+            <input type="email" required placeholder="Enter Email Here">
+            
+            <label>Phone</label>
+            <input type="phone" required placeholder="Enter Phone Name Here">
+            
             <label>Password</label>
             <input name="pw" class="pw"type="password" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$" required  oninvalid="this.setCustomValidity('Password must be at least 8 characters and include an uppercase letter, a number, and a special character.')" oninput="this.setCustomValidity(''); checkPasswords()" placeholder="Enter password here">        
             <label>Confirm Password</label>
@@ -111,7 +125,7 @@
 ?>
  
         </div>
-        <p class="paragraph">Not got anssss account? <a style="color:maroon" href="#">Sign up</a></p>
+        <p class="paragraph">Already got an account? <a style="color:maroon" href="index.php">Log in</a></p>
         </div>
         </div>
 <div class="footer">By Kallam Samad 2026 </div>

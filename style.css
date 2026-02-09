@@ -129,6 +129,8 @@ body{
 
 .signin input[type="text"],
 .signin input[type="password"],
+.signin input[type="email"],
+.signin input[type="phone"],
 .signin input[type="submit"] {
   width: 100%;               
   box-sizing: border-box;    

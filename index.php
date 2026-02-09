@@ -67,10 +67,10 @@
 
             <label>Password</label>
             <input type="password" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$" required  oninvalid="this.setCustomValidity('Password must be at least 8 characters and include an uppercase letter, a number, and a special character.')" oninput="this.setCustomValidity('')" placeholder="Enter password here">        
-            <input class="submitbtn" type="submit" value="submit">
+            <input class="submitbtn" type="submit" value="Submit">
         </form>
         </div>
-        <p class="paragraph">Not got an account? <a style="color:maroon" href="#">Sign up</a></p>
+        <p class="paragraph">Not got an account? <a style="color:maroon" href="signup.php">Sign up</a></p>
         </div>
         </div>
 <div class="footer">By Kallam Samad 2026 </div>
