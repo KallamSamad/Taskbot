@@ -1,3 +1,11 @@
+<?php 
+$db = new SQLite3("TM.db");
+$db->exec("PRAGMA foreign_keys = ON;");
+
+if($db){
+    echo "Connection successful";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,7 +68,7 @@
  
         
         <div class="right">
-            <h1 class="signinhead">Sign In </h1>
+            <h1 class="signinhead">Sign Up </h1>
             <div class="signin">
             <form method="POST" >
             <label>Username:</label>

@@ -1,3 +1,11 @@
+<?php 
+$db = new SQLite3("TM.db");
+$db->exec("PRAGMA foreign_keys = ON;");
+
+if($db){
+    echo "Connection successful";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
