@@ -51,10 +51,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <div class="header">
-        <div class="left">
-                <img class="waterfall">
-        </div>
         
+<div class="left">
+    <img src="Assets/Images/waterfall.webp" alt="Picture of a waterfall" class="sr-only">
+</div>        
         <div class="middle">
             <div class="quadlayer">
                 <div class="layer1">
@@ -108,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <label for="password">Password</label>
             <input name="password" type="password" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$" required  oninvalid="this.setCustomValidity('Password must be at least 8 characters and include an uppercase letter, a number, and a special character.')" oninput="this.setCustomValidity('')" placeholder="Enter password here">        
-            <input class="submitbtn" type="submit" value="Submit">
+            <input name="LoginButton" class="submitbtn" type="submit" value="Submit">
         </form>
         </div>
         <p class="paragraph">Not got an account? <a style="color:maroon" href="signup.php">Sign up</a></p>

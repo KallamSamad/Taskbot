@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$db = new SQLite3("TM.db");
+$db = new SQLite3("database.db");
 $db->exec("PRAGMA foreign_keys = ON;");
 
 if($db){
@@ -31,6 +31,7 @@ if($db){
                 </div>
                    <?php
     require_once 'nav.php';
+    require_once 'function.php';
     ?>
                 <div class="layer2">
                 <h2 style="padding-top:30px;">What is Taskbot?</h2>
@@ -66,28 +67,61 @@ if($db){
 
         </div>
         
+<?php
+if (isset($_POST['adduser'])) {
+
+    if ($_POST['pw'] !== $_POST['confpw']) {
+        echo "<p style='color:red;'>Passwords must match</p>";
+    } else {
+
+        $userID = addUser(
+            $db,
+            (int)$_POST['role'],
+            $_POST['display'],
+            $_POST['fname'],
+            $_POST['mname'],
+            $_POST['lname'],
+            $_POST['email'],
+            $_POST['phone'],
+            1
+        );
+
+        addCredentials(
+            $db,
+            $userID,
+            $_POST['username'],
+            $_POST['pw']
+        );
+
+        header("Location: index.php");
+        exit;
+    }
+}
+?>
+
  
         
         <div class="right">
             <h1 class="signinhead">Sign Up </h1>
             <div class="signin">
             <form method="POST" >
+            <input type="hidden" name="role" value="2">
             <label>Username:</label>
-            <input type="text" required placeholder="Enter Username Here">
+            <input name="username" type="text" required placeholder="Enter Username Here">
             <label>Display Name:</label>
-            <input type="text" required placeholder="Enter Display Name Here">
+            <input name="display" type="text" required placeholder="Enter Display Name Here">
             <label>First name</label>
-            <input type="text" required placeholder="Enter First Name Here">
+            <input name="fname" type="text" required placeholder="Enter First Name Here">
             <label>Middle name:</label>
-            <input type="text"  placeholder="Enter Middle Name Here">
+            <input name="mname" type="text"  placeholder="Enter Middle Name Here">
             <label>Last name</label>
-            <input type="text" required placeholder="Enter Last Name Here">
+            <input name="lname" type="text" required placeholder="Enter Last Name Here">
 
             <label>Email:</label>
-            <input type="email" required placeholder="Enter Email Here">
+            <input name="email" type="email" required placeholder="Enter Email Here">
             
             <label>Phone</label>
-            <input type="phone" required placeholder="Enter Phone Name Here">
+            <input name="phone"type="phone" required placeholder="Enter Phone Name Here">
             
             <label>Password</label>
             <input name="pw" class="pw"type="password" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$" required  oninvalid="this.setCustomValidity('Password must be at least 8 characters and include an uppercase letter, a number, and a special character.')" oninput="this.setCustomValidity(''); checkPasswords()" placeholder="Enter password here">        
@@ -95,11 +129,9 @@ if($db){
             <input name="confpw" class="confpw" type="password" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$" required  oninvalid="this.setCustomValidity('Password must be at least 8 characters and include an uppercase letter, a number, and a special character.')" oninput="this.setCustomValidity(''); checkPasswords()" placeholder="Confirm password here">        
             <p id="pwError" style="color:red; display:none;">Passwords must match</p>
 
-                             
-                             
-         
+                            
  
-            <input name="submitbtn" class="submitbtn" type="submit" value="Submit">
+            <input name="adduser" class="submitbtn" type="submit" value="Submit">
  
 
         </form>
@@ -132,6 +164,7 @@ if($db){
 
         
 ?>
+
  
         </div>
         <p class="paragraph">Already got an account? <a style="color:maroon" href="index.php">Log in</a></p>
