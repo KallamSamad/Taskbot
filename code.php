@@ -1,32 +1,44 @@
-
-<?php 
- 
+<?php
 session_start();
-$message=' ';
+$message = '';
 $db = new SQLite3("C:/xampp/htdocs/TaskBot/database.db");
 $db->exec("PRAGMA foreign_keys = ON;");
+require_once "function.php";
 
- 
+$id = $_SESSION['id'] ?? null;
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-     
-    $email = $_POST['email'] ?? '';
-    $id=$db->prepare("SELECT UserID FROM Users WHERE Email=:email;");
-    $id->bindValue(":email",$email, SQLITE3_TEXT);
-    $result = $id->execute();   
-    $row = $result->fetchArray(SQLITE3_ASSOC);
-    if ($row){
-        $_SESSION['id'] = (int)$row['UserID'];
-        header("Location: code.php");
+if (!$id) {
+    $message = "Session expired. Go back and enter your email again.";
+} else {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    }else{
-    $message = "Email Not Found"; 
+        $enteredCode = trim($_POST['code'] ?? '');
+        $pw = $_POST['pw'] ?? '';
+        $conf = $_POST['confpw'] ?? '';
 
+        if ($pw !== $conf) {
+            $message = "Passwords do not match.";
+        } else {
+            $stmt = $db->prepare("SELECT ResetToken FROM Credentials WHERE UserID = :id");
+            $stmt->bindValue(":id", $id, SQLITE3_INTEGER);
+            $res = $stmt->execute();
+            $row = $res->fetchArray(SQLITE3_ASSOC);
 
+            if (!$row || $row['ResetToken'] !== $enteredCode) {
+                $message = "Invalid code.";
+            } else {
+                updatePW($db, $id, $pw);
+                $_SESSION['flash'] = "Password updated successfully";
+                header("Location: index.php");
+                exit();
+            }
+        }
+
+    } else {
+        $generatedCode = code($db, null, $id);
+        echo $generatedCode;
     }
-                
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -90,14 +102,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         <div class="right">
             <h1 class="signinhead">Sign In </h1>
-            <div class="signin">
-            <?php if (!empty($message)) echo "<p style='color:red;'>$message</p>"; ?>
-            <form class="verify" method="POST">
-            <label for="email">Email</label>
-            <input name="email" type="email" required placeholder="Enter email Here">
+        <div class="signin">
+        <?php if (!empty($message)) echo "<p style='color:maroon;'>$message</p>"; ?>
 
- 
+        <form class="verify" method="POST">
+
+            <label for="code">Code</label>
+            <input name="code" type="text" inputmode="numeric" pattern="^\d{8}$"
+                maxlength="8" minlength="8" required placeholder="Enter 8-digit code">
+
+            <label>Password</label>
+            <input name="pw" class="pw" type="password"
+                pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$"
+                required oninput="checkPasswords()" placeholder="Enter password here">
+
+            <label>Confirm Password</label>
+            <input name="confpw" class="confpw" type="password"
+                pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$"
+                required oninput="checkPasswords()" placeholder="Confirm password here">
+
+            <p id="pwError" style="color:red; display:none;">Passwords must match</p>
+
             <input name="LoginButton" class="submitbtn" type="submit" value="Submit">
+
         </form>
         </div>
         <p class="paragraph">Not got an account? <a style="color:maroon" href="signup.php">Sign up</a></p>

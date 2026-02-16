@@ -6,11 +6,6 @@ $message=' ';
 $db = new SQLite3("C:/xampp/htdocs/TaskBot/database.db");
 $db->exec("PRAGMA foreign_keys = ON;");
 
-if($db){
-    echo "Connection successful";
-}
-
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username=$_POST['username']??"";
     $password=$_POST['password']??"";
@@ -35,7 +30,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
  
     echo "\n $message";
-                
+   
+
+if (!empty($_SESSION['flash'])) {
+    echo "<p style='color:green'>" . $_SESSION['flash'] . "</p>";
+    unset($_SESSION['flash']);
+}
 
 
 ?>

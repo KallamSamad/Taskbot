@@ -27,15 +27,40 @@ function addCredentials($db, $userID, $username, $plainPassword) {
 
     $stmt = $db->prepare("
         INSERT INTO Credentials
-        (UserID, Username, HashedPassword, PasswordChangedAt, FailedLoginAttempts)
+        (UserID, Username, HashedPassword, PasswordChangedAt)
         VALUES
-        (:userID, :username, :hash, CURRENT_TIMESTAMP, 0)
+        (:userID, :username, :hash, CURRENT_TIMESTAMP)
     ");
 
     $stmt->bindValue(":userID", $userID, SQLITE3_INTEGER);
     $stmt->bindValue(":username", $username, SQLITE3_TEXT);
     $stmt->bindValue(":hash", $hash, SQLITE3_TEXT);
 
+    $stmt->execute();
+}
+
+function code($db,$code,$id){
+    $code = rand(10000000,99999999);
+    $stmt = $db->prepare("UPDATE Credentials SET ResetToken = :code WHERE UserID = :id");
+    $stmt->bindValue(":code",$code, SQLITE3_TEXT);
+    $stmt->bindValue(":id",$id, SQLITE3_INTEGER);
+    $stmt->execute();
+    return $code;
+}
+
+function updatePW($db,$id,$plainPassword){
+    $hash = password_hash($plainPassword, PASSWORD_DEFAULT);
+
+    $stmt = $db->prepare("
+        UPDATE Credentials
+        SET HashedPassword = :pw,
+            PasswordChangedAt = CURRENT_TIMESTAMP,
+            ResetToken = NULL
+        WHERE UserID = :id
+    ");
+
+    $stmt->bindValue(":pw",$hash, SQLITE3_TEXT);
+    $stmt->bindValue(":id",$id, SQLITE3_INTEGER);
     $stmt->execute();
 }
 ?>
