@@ -168,6 +168,8 @@ if (isset($_POST['adduser'])) {
  
         </div>
         <p class="paragraph">Already got an account? <a style="color:maroon" href="index.php">Log in</a></p>
+        <p class="paragraph"><a style="color:maroon;" href="forgotpassword.php">Forgot Passsword?</a></p>
+
         </div>
         </div>
 <div class="footer">By Kallam Samad 2026 </div>

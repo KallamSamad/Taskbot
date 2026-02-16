@@ -112,7 +112,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
         </div>
         <p class="paragraph">Not got an account? <a style="color:maroon" href="signup.php">Sign up</a></p>
-        <p class="paragraph"><a style="color:maroon;" href="forgotpassword.php">Forgot Passsword?</a></p>
         </div>
         </div>
 <div class="footer">By Kallam Samad 2026 </div>
