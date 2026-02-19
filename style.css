@@ -1,12 +1,13 @@
 body{
-    background-color:#E6F0EC;
+    background-color:#efd553;
     margin:0;
+    
 }
 
 .header{
     display:flex;
     min-height:100vh;
-    width: 100%;
+    width:100%;
 }
 
 .left{
@@ -32,6 +33,9 @@ body{
     flex:1;
     background-color:#9FB69A;
     border-radius:2px;
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
 }
 
 .trilayer{
@@ -125,19 +129,6 @@ body{
     background-color:rgb(91,0,0);
 }
 
-.signin input[type="text"],
-.signin input[type="password"],
-.signin input[type="email"],
-.signin input[type="tel"],
-.signin input[type="submit"]{
-    width:100%;
-    box-sizing:border-box;
-    padding:5px;
-    margin-top:5px;
-    border-radius:6px;
-    font-size:1rem;
-}
-
 .signin{
     display:flex;
     flex-direction:column;
@@ -146,16 +137,29 @@ body{
     max-width:300px;
     padding:30px;
     border-radius:8px;
+    align-items:stretch;
 }
 
-.signinhead{
-    padding:20px;
+.signin input[type="text"],
+.signin input[type="password"],
+.signin input[type="email"],
+.signin input[type="tel"],
+.signin input[type="submit"]{
+    display:block;
+    width:100%;
+    box-sizing:border-box;
+    padding:5px;
+    margin-top:5px;
+    border-radius:6px;
+    font-size:1rem;
 }
 
 .submitbtn{
     background-color:rgb(91,0,0);
     color:#E6F0EC;
     height:50px;
+    width:100%;
+    display:block;
     font-size:large!important;
 }
 
@@ -178,12 +182,13 @@ body{
 
 .verify{
     display:flex;
-    flex-direction:row;
-    width:10px;
-    height: 10px;
-    padding:30px;
-    border-radius:8px;
+    flex-direction:column;
+    gap:10px;
+    width:100%;
+    padding:0;
+    height:auto;
 }
+
 .verify input[type="text"],
 .verify input[type="password"],
 .verify input[type="email"],
@@ -195,4 +200,71 @@ body{
     margin-top:5px;
     border-radius:6px;
     font-size:1rem;
+}
+
+.verify input{
+    width:100%;
+    display:block;
+}
+
+.hamburger{
+    font-size: x-large;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;  
+  padding-right: 20px;   
+  background-color: rgb(91,0,0);        
+}
+
+
+.navbar-brand {
+  color: white !important;
+  font-weight: bold;
+  text-decoration: none !important;
+}
+.dashboard{
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+ .dashboard ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ .dashboard li{
+  margin: 10px 0;
+}
+
+ .dashboard a{
+  display: block;                  
+  padding: 12px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: rgb(91,0,0);
+  background-color: #E6F0EC;
+  border: 1px solid rgba(0,0,0,0.15);
+  font-weight: 600;
+}
+
+ .dashboard a:hover,
+.dashboard a:focus{
+  background-color: #efd553;
+  outline: none;
+}
+
+ .right .dashboard{
+  flex: 1;
+}
+ 
+.profile-info{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 20px;
+  border-radius: 6px;
+  color: #E6F0EC;
 }

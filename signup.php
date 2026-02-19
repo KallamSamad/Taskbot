@@ -121,7 +121,7 @@ if (isset($_POST['adduser'])) {
             <input name="email" type="email" required placeholder="Enter Email Here">
             
             <label>Phone</label>
-            <input name="phone"type="phone" required placeholder="Enter Phone Name Here">
+            <input name="phone"type="tel" required placeholder="Enter Phone Name Here">
             
             <label>Password</label>
             <input name="pw" class="pw"type="password" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$" required  oninvalid="this.setCustomValidity('Password must be at least 8 characters and include an uppercase letter, a number, and a special character.')" oninput="this.setCustomValidity(''); checkPasswords()" placeholder="Enter password here">        

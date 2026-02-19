@@ -1,4 +1,4 @@
-
+ 
 <?php 
  
 session_start();
@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bindValue(":username", $username, SQLITE3_TEXT);
  
     $result = $stmt->execute();
+    
     $row = $result->fetchArray(SQLITE3_ASSOC);
         if (!$row) {
         $message= "No user found";
@@ -24,11 +25,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $hashedPassword= $row["HashedPassword"];
         if(password_verify($password, $hashedPassword)){
         $message= 'login successful';
+        $_SESSION['username'] = $username;
+
     } else{
         $message= "Your password is incorrect!";}
                   }
     }
- 
+  
     echo "\n $message";
    
 
@@ -39,6 +42,26 @@ if (!empty($_SESSION['flash'])) {
 
 
 ?>
+<?php
+ 
+if (isset($_SESSION['username'])) {
+
+    $username = $_SESSION['username'];
+
+    $stmt = $db->prepare("
+        SELECT C.UserID, U.RoleID, RoleType
+        FROM Credentials AS C
+        INNER JOIN Users AS U ON C.UserID = U.UserID
+        INNER JOIN Role AS R ON U.RoleID = R.RoleID
+        WHERE C.Username = :username
+    ");
+
+    $stmt->bindValue(":username", $username, SQLITE3_TEXT);
+    $result = $stmt->execute();
+    $row = $result->fetchArray(SQLITE3_ASSOC);
+
+    $_SESSION['role'] = $row['RoleType'] ?? 'Staff';
+}?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,6 +79,7 @@ if (!empty($_SESSION['flash'])) {
     <img src="Assets/Images/waterfall.webp" alt="Picture of a waterfall" class="sr-only">
 </div>        
         <div class="middle">
+             
             <div class="quadlayer">
                 <div class="layer1">
                     <h1 style="text-align:center"><b>Taskbot</b></h1>
@@ -63,7 +87,7 @@ if (!empty($_SESSION['flash'])) {
                 </div>
                    <?php
     require_once 'nav.php';
-    ?>
+    ?>        <?php if (!isset($_SESSION['username'])):?>
                 <div class="layer2">
                 <h2 style="padding-top:30px;">What is Taskbot?</h2>
                 <p class="paragraph">Taskbot is a very intuitive and structured way of organising tasks. Be it day-to-day "to do lists" to planning a project for your work. If you want an effiecnt way of organising your tasks, Taskbot is the app!</p>
@@ -95,11 +119,14 @@ if (!empty($_SESSION['flash'])) {
 
                 </div>
             </div>
-
+                           <?php else: ?>
+            <?php require 'staff.php'; ?>
+        <?php endif; ?>
         </div>
-        
-        
+      
+ 
         <div class="right">
+             <?php if (!isset($_SESSION['username'])):?>
             <h1 class="signinhead">Sign In </h1>
             <div class="signin">
             <form method="POST">
@@ -113,8 +140,15 @@ if (!empty($_SESSION['flash'])) {
         </div>
         <p class="paragraph">Not got an account? <a style="color:maroon" href="signup.php">Sign up</a></p>
         <p class="paragraph"><a style="color:maroon;" href="forgotpassword.php">Forgot Passsword?</a></p>
+                       <?php else: ?>
+            <?php require 'dashboard.php'; ?>
+        <?php endif; ?>
+  
+         
         </div>
+        
         </div>
+ 
 <div class="footer">By Kallam Samad 2026 </div>
 </body>
 </html>
