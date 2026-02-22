@@ -1,0 +1,619 @@
+html.a11y-dark body,
+body.a11y-dark{background:#000 !important;color:#fff !important;}
+
+html.a11y-contrast body,
+body.a11y-contrast{background:#000 !important;color:#fff !important;}
+
+html.a11y-large-text body,
+body.a11y-large-text{}
+
+:focus-visible{outline:4px solid #ffbf47 !important;outline-offset:4px !important;}
+:focus:not(:focus-visible){outline:none;}
+
+html.a11y-dark body,
+html.a11y-contrast body,
+html.a11y-large-text body,
+body.a11y-dark,
+body.a11y-contrast,
+body.a11y-large-text{
+  --a11y-font:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  --a11y-fs-body:1.2rem;
+  --a11y-fs-small:1.1rem;
+  --a11y-fs-nav:1.2rem;
+  --a11y-fs-btn:1.2rem;
+  --a11y-fs-table:1.15rem;
+  --a11y-fs-h1:2.4rem;
+  --a11y-fs-h2:2rem;
+  --a11y-fs-h3:1.6rem;
+  --a11y-lh-body:1.8;
+  --a11y-lh-head:1.2;
+  font-family:var(--a11y-font) !important;
+  font-size:var(--a11y-fs-body) !important;
+  line-height:var(--a11y-lh-body) !important;
+}
+
+html.a11y-dark body *,
+html.a11y-contrast body *,
+html.a11y-large-text body *,
+body.a11y-dark *,
+body.a11y-contrast *,
+body.a11y-large-text *{font-family:inherit !important;}
+
+html.a11y-dark body i,
+html.a11y-dark body .fa,
+html.a11y-dark body .bi,
+html.a11y-contrast body i,
+html.a11y-contrast body .fa,
+html.a11y-contrast body .bi,
+html.a11y-large-text body i,
+html.a11y-large-text body .fa,
+html.a11y-large-text body .bi,
+body.a11y-dark i,
+body.a11y-dark .fa,
+body.a11y-dark .bi,
+body.a11y-contrast i,
+body.a11y-contrast .fa,
+body.a11y-contrast .bi,
+body.a11y-large-text i,
+body.a11y-large-text .fa,
+body.a11y-large-text .bi{font-family:unset !important;}
+
+html.a11y-dark body h1,
+html.a11y-contrast body h1,
+html.a11y-large-text body h1,
+body.a11y-dark h1,
+body.a11y-contrast h1,
+body.a11y-large-text h1{font-size:var(--a11y-fs-h1) !important;line-height:var(--a11y-lh-head) !important;}
+
+html.a11y-dark body h2,
+html.a11y-contrast body h2,
+html.a11y-large-text body h2,
+body.a11y-dark h2,
+body.a11y-contrast h2,
+body.a11y-large-text h2{font-size:var(--a11y-fs-h2) !important;line-height:var(--a11y-lh-head) !important;}
+
+html.a11y-dark body h3,
+html.a11y-contrast body h3,
+html.a11y-large-text body h3,
+body.a11y-dark h3,
+body.a11y-contrast h3,
+body.a11y-large-text h3{font-size:var(--a11y-fs-h3) !important;line-height:var(--a11y-lh-head) !important;}
+
+html.a11y-dark body small,
+html.a11y-contrast body small,
+html.a11y-large-text body small,
+html.a11y-dark body .small,
+html.a11y-contrast body .small,
+html.a11y-large-text body .small,
+body.a11y-dark small,
+body.a11y-contrast small,
+body.a11y-large-text small,
+body.a11y-dark .small,
+body.a11y-contrast .small,
+body.a11y-large-text .small{font-size:var(--a11y-fs-small) !important;}
+
+html.a11y-dark body .middle,
+html.a11y-contrast body .middle,
+html.a11y-large-text body .middle,
+body.a11y-dark .middle,
+body.a11y-contrast .middle,
+body.a11y-large-text .middle{font-size:inherit !important;}
+
+html.a11y-dark body .paragraph,
+html.a11y-contrast body .paragraph,
+html.a11y-large-text body .paragraph,
+body.a11y-dark .paragraph,
+body.a11y-contrast .paragraph,
+body.a11y-large-text .paragraph{font-size:inherit !important;}
+
+html.a11y-dark body nav,
+html.a11y-contrast body nav,
+html.a11y-large-text body nav,
+body.a11y-dark nav,
+body.a11y-contrast nav,
+body.a11y-large-text nav{font-size:var(--a11y-fs-nav) !important;}
+
+html.a11y-dark body .btn,
+html.a11y-contrast body .btn,
+html.a11y-large-text body .btn,
+body.a11y-dark .btn,
+body.a11y-contrast .btn,
+body.a11y-large-text .btn{font-size:var(--a11y-fs-btn) !important;}
+
+html.a11y-dark body .submitbtn,
+html.a11y-contrast body .submitbtn,
+html.a11y-large-text body .submitbtn,
+body.a11y-dark .submitbtn,
+body.a11y-contrast .submitbtn,
+body.a11y-large-text .submitbtn{font-size:var(--a11y-fs-btn) !important;}
+
+html.a11y-dark body input,
+html.a11y-dark body select,
+html.a11y-dark body textarea,
+html.a11y-contrast body input,
+html.a11y-contrast body select,
+html.a11y-contrast body textarea,
+html.a11y-large-text body input,
+html.a11y-large-text body select,
+html.a11y-large-text body textarea,
+body.a11y-dark input,
+body.a11y-dark select,
+body.a11y-dark textarea,
+body.a11y-contrast input,
+body.a11y-contrast select,
+body.a11y-contrast textarea,
+body.a11y-large-text input,
+body.a11y-large-text select,
+body.a11y-large-text textarea{font-size:var(--a11y-fs-body) !important;}
+
+html.a11y-dark body button,
+html.a11y-dark body .btn,
+html.a11y-dark body input[type="submit"],
+html.a11y-contrast body button,
+html.a11y-contrast body .btn,
+html.a11y-contrast body input[type="submit"],
+html.a11y-large-text body button,
+html.a11y-large-text body .btn,
+html.a11y-large-text body input[type="submit"],
+body.a11y-dark button,
+body.a11y-dark .btn,
+body.a11y-dark input[type="submit"],
+body.a11y-contrast button,
+body.a11y-contrast .btn,
+body.a11y-contrast input[type="submit"],
+body.a11y-large-text button,
+body.a11y-large-text .btn,
+body.a11y-large-text input[type="submit"]{
+  padding:14px 18px !important;
+  border-radius:10px !important;
+  min-height:48px !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  text-align:center !important;
+  white-space:nowrap !important;
+}
+
+html.a11y-large-text body,
+body.a11y-large-text{
+  --a11y-fs-body:1.75rem;
+  --a11y-fs-small:1.5rem;
+  --a11y-fs-nav:1.75rem;
+  --a11y-fs-btn:1.75rem;
+  --a11y-fs-table:1.6rem;
+  --a11y-fs-h1:3.4rem;
+  --a11y-fs-h2:2.8rem;
+  --a11y-fs-h3:2.2rem;
+  --a11y-lh-body:2;
+}
+
+html.a11y-large-text body .tasks-table th,
+html.a11y-large-text body .tasks-table td,
+body.a11y-large-text .tasks-table th,
+body.a11y-large-text .tasks-table td{padding:18px 16px !important;}
+
+html.a11y-large-text body input,
+html.a11y-large-text body select,
+html.a11y-large-text body textarea,
+body.a11y-large-text input,
+body.a11y-large-text select,
+body.a11y-large-text textarea{padding:14px 14px !important;}
+
+html.a11y-dark body,
+body.a11y-dark{background:#000 !important;color:#fff !important;}
+
+html.a11y-dark body,
+html.a11y-dark body *,
+body.a11y-dark,
+body.a11y-dark *{color:#fff !important;}
+
+html.a11y-dark body .header,
+html.a11y-dark body .left,
+html.a11y-dark body .middle,
+html.a11y-dark body .right,
+html.a11y-dark body .footer,
+html.a11y-dark body .card,
+html.a11y-dark body .container,
+html.a11y-dark body .signin,
+html.a11y-dark body .verify,
+html.a11y-dark body .dashboard,
+html.a11y-dark body .table-wrap,
+html.a11y-dark body .profile-info,
+html.a11y-dark body .page-title,
+html.a11y-dark body .layer1,
+html.a11y-dark body .layer2,
+html.a11y-dark body .layer3,
+html.a11y-dark body .layer4,
+body.a11y-dark .header,
+body.a11y-dark .left,
+body.a11y-dark .middle,
+body.a11y-dark .right,
+body.a11y-dark .footer,
+body.a11y-dark .card,
+body.a11y-dark .container,
+body.a11y-dark .signin,
+body.a11y-dark .verify,
+body.a11y-dark .dashboard,
+body.a11y-dark .table-wrap,
+body.a11y-dark .profile-info,
+body.a11y-dark .page-title,
+body.a11y-dark .layer1,
+body.a11y-dark .layer2,
+body.a11y-dark .layer3,
+body.a11y-dark .layer4{
+  background:#000 !important;
+  border-color:#fff !important;
+  box-shadow:none !important;
+}
+
+html.a11y-dark body a,
+body.a11y-dark a{
+  color:#fff !important;
+  text-decoration:underline !important;
+  text-decoration-thickness:0.16em !important;
+  text-underline-offset:0.2em !important;
+}
+
+html.a11y-dark body input,
+html.a11y-dark body select,
+html.a11y-dark body textarea,
+body.a11y-dark input,
+body.a11y-dark select,
+body.a11y-dark textarea{
+  background:#000 !important;
+  color:#fff !important;
+  border:2px solid #fff !important;
+  box-shadow:none !important;
+}
+
+html.a11y-dark body button,
+html.a11y-dark body .btn,
+html.a11y-dark body input[type="submit"],
+html.a11y-dark body .submitbtn,
+body.a11y-dark button,
+body.a11y-dark .btn,
+body.a11y-dark input[type="submit"],
+body.a11y-dark .submitbtn{
+  background:#000 !important;
+  color:#fff !important;
+  border:2px solid #fff !important;
+  box-shadow:none !important;
+}
+
+html.a11y-dark body button:hover,
+html.a11y-dark body .btn:hover,
+html.a11y-dark body input[type="submit"]:hover,
+html.a11y-dark body button:focus-visible,
+html.a11y-dark body .btn:focus-visible,
+html.a11y-dark body input[type="submit"]:focus-visible,
+body.a11y-dark button:hover,
+body.a11y-dark .btn:hover,
+body.a11y-dark input[type="submit"]:hover,
+body.a11y-dark button:focus-visible,
+body.a11y-dark .btn:focus-visible,
+body.a11y-dark input[type="submit"]:focus-visible{
+  background:#fff !important;
+  color:#000 !important;
+}
+
+html.a11y-dark body .tasks-table,
+body.a11y-dark .tasks-table{background:#000 !important;border:2px solid #fff !important;}
+
+html.a11y-dark body .tasks-table th,
+html.a11y-dark body .tasks-table td,
+body.a11y-dark .tasks-table th,
+body.a11y-dark .tasks-table td{
+  background:#000 !important;
+  color:#fff !important;
+  border-bottom:2px solid #fff !important;
+}
+
+html.a11y-dark body .tasks-table thead th,
+body.a11y-dark .tasks-table thead th{border-bottom:4px solid #fff !important;}
+
+html.a11y-dark body .tasks-table tbody tr:nth-child(even),
+html.a11y-dark body .tasks-table tbody tr:hover,
+body.a11y-dark .tasks-table tbody tr:nth-child(even),
+body.a11y-dark .tasks-table tbody tr:hover{background:#000 !important;}
+
+html.a11y-contrast body,
+body.a11y-contrast{background:#000 !important;color:#fff !important;}
+
+html.a11y-contrast body,
+html.a11y-contrast body *,
+body.a11y-contrast,
+body.a11y-contrast *{color:#fff !important;}
+
+html.a11y-contrast body a,
+body.a11y-contrast a{
+  color:#fff !important;
+  text-decoration:underline !important;
+  text-decoration-thickness:0.2em !important;
+  text-underline-offset:0.2em !important;
+}
+
+html.a11y-contrast body .header,
+html.a11y-contrast body .left,
+html.a11y-contrast body .middle,
+html.a11y-contrast body .right,
+html.a11y-contrast body .footer,
+html.a11y-contrast body .card,
+html.a11y-contrast body .container,
+html.a11y-contrast body .signin,
+html.a11y-contrast body .verify,
+html.a11y-contrast body .dashboard,
+html.a11y-contrast body .table-wrap,
+html.a11y-contrast body .profile-info,
+html.a11y-contrast body .page-title,
+html.a11y-contrast body .layer1,
+html.a11y-contrast body .layer2,
+html.a11y-contrast body .layer3,
+html.a11y-contrast body .layer4,
+body.a11y-contrast .header,
+body.a11y-contrast .left,
+body.a11y-contrast .middle,
+body.a11y-contrast .right,
+body.a11y-contrast .footer,
+body.a11y-contrast .card,
+body.a11y-contrast .container,
+body.a11y-contrast .signin,
+body.a11y-contrast .verify,
+body.a11y-contrast .dashboard,
+body.a11y-contrast .table-wrap,
+body.a11y-contrast .profile-info,
+body.a11y-contrast .page-title,
+body.a11y-contrast .layer1,
+body.a11y-contrast .layer2,
+body.a11y-contrast .layer3,
+body.a11y-contrast .layer4{
+  background:#000 !important;
+  border:3px solid #fff !important;
+  box-shadow:none !important;
+}
+
+html.a11y-contrast body input,
+html.a11y-contrast body select,
+html.a11y-contrast body textarea,
+body.a11y-contrast input,
+body.a11y-contrast select,
+body.a11y-contrast textarea{
+  background:#000 !important;
+  color:#fff !important;
+  border:3px solid #fff !important;
+  box-shadow:none !important;
+}
+
+html.a11y-contrast body button,
+html.a11y-contrast body .btn,
+html.a11y-contrast body input[type="submit"],
+html.a11y-contrast body .submitbtn,
+body.a11y-contrast button,
+body.a11y-contrast .btn,
+body.a11y-contrast input[type="submit"],
+body.a11y-contrast .submitbtn{
+  background:#000 !important;
+  color:#fff !important;
+  border:3px solid #fff !important;
+  box-shadow:none !important;
+}
+
+html.a11y-contrast body button:hover,
+html.a11y-contrast body .btn:hover,
+html.a11y-contrast body input[type="submit"]:hover,
+html.a11y-contrast body button:focus-visible,
+html.a11y-contrast body .btn:focus-visible,
+html.a11y-contrast body input[type="submit"]:focus-visible,
+body.a11y-contrast button:hover,
+body.a11y-contrast .btn:hover,
+body.a11y-contrast input[type="submit"]:hover,
+body.a11y-contrast button:focus-visible,
+body.a11y-contrast .btn:focus-visible,
+body.a11y-contrast input[type="submit"]:focus-visible{
+  background:#fff !important;
+  color:#000 !important;
+}
+
+html.a11y-contrast body .tasks-table,
+body.a11y-contrast .tasks-table{background:#000 !important;border:3px solid #fff !important;}
+
+html.a11y-contrast body .tasks-table th,
+html.a11y-contrast body .tasks-table td,
+body.a11y-contrast .tasks-table th,
+body.a11y-contrast .tasks-table td{
+  background:#000 !important;
+  color:#fff !important;
+  border-bottom:2px solid #fff !important;
+}
+
+html.a11y-contrast body .tasks-table thead th,
+body.a11y-contrast .tasks-table thead th{border-bottom:4px solid #fff !important;}
+
+html.a11y-contrast body .priority-high,
+html.a11y-contrast body .priority-medium,
+html.a11y-contrast body .priority-low,
+body.a11y-contrast .priority-high,
+body.a11y-contrast .priority-medium,
+body.a11y-contrast .priority-low{color:#fff !important;}
+
+html.a11y-dark body :focus-visible,
+html.a11y-contrast body :focus-visible,
+body.a11y-dark :focus-visible,
+body.a11y-contrast :focus-visible{outline:4px solid #fff !important;outline-offset:4px !important;}
+
+html.a11y-dark body .tasks-table th,
+html.a11y-dark body .tasks-table td,
+html.a11y-contrast body .tasks-table th,
+html.a11y-contrast body .tasks-table td,
+html.a11y-large-text body .tasks-table th,
+html.a11y-large-text body .tasks-table td,
+body.a11y-dark .tasks-table th,
+body.a11y-dark .tasks-table td,
+body.a11y-contrast .tasks-table th,
+body.a11y-contrast .tasks-table td,
+body.a11y-large-text .tasks-table th,
+body.a11y-large-text .tasks-table td{
+  font-size:1rem !important;
+  line-height:1.4 !important;
+  padding:10px 12px !important;
+}
+
+html.a11y-large-text body .tasks-table th,
+html.a11y-large-text body .tasks-table td,
+body.a11y-large-text .tasks-table th,
+body.a11y-large-text .tasks-table td{
+  font-size:1.1rem !important;
+  padding:12px 14px !important;
+}
+
+.tasks-table th,
+.tasks-table td{word-break:keep-all !important;white-space:normal !important;}
+
+html.a11y-dark body .nav,
+html.a11y-dark body nav,
+html.a11y-dark body .layer1,
+html.a11y-contrast body .nav,
+html.a11y-contrast body nav,
+html.a11y-contrast body .layer1,
+body.a11y-dark .nav,
+body.a11y-dark nav,
+body.a11y-dark .layer1,
+body.a11y-contrast .nav,
+body.a11y-contrast nav,
+body.a11y-contrast .layer1{
+  background:#000 !important;
+  color:#fff !important;
+  border-color:#fff !important;
+}
+
+html.a11y-dark body nav a,
+html.a11y-contrast body nav a,
+body.a11y-dark nav a,
+body.a11y-contrast nav a{color:#fff !important;text-decoration:underline !important;}
+
+html.a11y-dark body .layer1 h1,
+html.a11y-contrast body .layer1 h1,
+body.a11y-dark .layer1 h1,
+body.a11y-contrast .layer1 h1{color:#fff !important;}
+
+html.a11y-dark body .btn,
+html.a11y-dark body button,
+html.a11y-dark body input[type="submit"],
+html.a11y-dark body .submitbtn,
+html.a11y-dark body .dashboard a,
+html.a11y-dark body .pagination a,
+html.a11y-dark body .pagination strong,
+html.a11y-contrast body .btn,
+html.a11y-contrast body button,
+html.a11y-contrast body input[type="submit"],
+html.a11y-contrast body .submitbtn,
+html.a11y-contrast body .dashboard a,
+html.a11y-contrast body .pagination a,
+html.a11y-contrast body .pagination strong,
+body.a11y-dark .btn,
+body.a11y-dark button,
+body.a11y-dark input[type="submit"],
+body.a11y-dark .submitbtn,
+body.a11y-dark .dashboard a,
+body.a11y-dark .pagination a,
+body.a11y-dark .pagination strong,
+body.a11y-contrast .btn,
+body.a11y-contrast button,
+body.a11y-contrast input[type="submit"],
+body.a11y-contrast .submitbtn,
+body.a11y-contrast .dashboard a,
+body.a11y-contrast .pagination a,
+body.a11y-contrast .pagination strong{
+  background:#000 !important;
+  color:#fff !important;
+  border:2px solid #fff !important;
+  box-shadow:none !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  text-align:center !important;
+  font-weight:700 !important;
+  text-decoration:none !important;
+}
+
+html.a11y-dark body .pagination strong,
+html.a11y-contrast body .pagination strong,
+body.a11y-dark .pagination strong,
+body.a11y-contrast .pagination strong{background:#fff !important;color:#000 !important;}
+
+html.a11y-dark body .btn:hover,
+html.a11y-dark body button:hover,
+html.a11y-dark body input[type="submit"]:hover,
+html.a11y-dark body .dashboard a:hover,
+html.a11y-dark body .pagination a:hover,
+html.a11y-dark body .btn:focus-visible,
+html.a11y-dark body button:focus-visible,
+html.a11y-dark body input[type="submit"]:focus-visible,
+html.a11y-dark body .dashboard a:focus-visible,
+html.a11y-dark body .pagination a:focus-visible,
+html.a11y-contrast body .btn:hover,
+html.a11y-contrast body button:hover,
+html.a11y-contrast body input[type="submit"]:hover,
+html.a11y-contrast body .dashboard a:hover,
+html.a11y-contrast body .pagination a:hover,
+html.a11y-contrast body .btn:focus-visible,
+html.a11y-contrast body button:focus-visible,
+html.a11y-contrast body input[type="submit"]:focus-visible,
+html.a11y-contrast body .dashboard a:focus-visible,
+html.a11y-contrast body .pagination a:focus-visible,
+body.a11y-dark .btn:hover,
+body.a11y-dark button:hover,
+body.a11y-dark input[type="submit"]:hover,
+body.a11y-dark .dashboard a:hover,
+body.a11y-dark .pagination a:hover,
+body.a11y-dark .btn:focus-visible,
+body.a11y-dark button:focus-visible,
+body.a11y-dark input[type="submit"]:focus-visible,
+body.a11y-dark .dashboard a:focus-visible,
+body.a11y-dark .pagination a:focus-visible,
+body.a11y-contrast .btn:hover,
+body.a11y-contrast button:hover,
+body.a11y-contrast input[type="submit"]:hover,
+body.a11y-contrast .dashboard a:hover,
+body.a11y-contrast .pagination a:hover,
+body.a11y-contrast .btn:focus-visible,
+body.a11y-contrast button:focus-visible,
+body.a11y-contrast input[type="submit"]:focus-visible,
+body.a11y-contrast .dashboard a:focus-visible,
+body.a11y-contrast .pagination a:focus-visible{background:#fff !important;color:#000 !important;}
+
+html.a11y-dark body .dashboard a,
+html.a11y-contrast body .dashboard a,
+body.a11y-dark .dashboard a,
+body.a11y-contrast .dashboard a{width:100%;}
+
+html.a11y-large-text body .btn,
+html.a11y-large-text body .dashboard a,
+html.a11y-large-text body .pagination a,
+body.a11y-large-text .btn,
+body.a11y-large-text .dashboard a,
+body.a11y-large-text .pagination a{font-size:1.4rem !important;padding:14px 18px !important;}
+
+html.a11y-dark body .tasks-table td button,
+html.a11y-contrast body .tasks-table td button,
+html.a11y-large-text body .tasks-table td button,
+body.a11y-dark .tasks-table td button,
+body.a11y-contrast .tasks-table td button,
+body.a11y-large-text .tasks-table td button{
+  width:100% !important;
+  max-width:100% !important;
+  box-sizing:border-box !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  padding:8px 10px !important;
+  font-size:0.95rem !important;
+  white-space:nowrap !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+}
+
+html.a11y-large-text body .tasks-table td button,
+body.a11y-large-text .tasks-table td button{font-size:1.05rem !important;padding:10px 12px !important;}
+
+.tasks-table td:nth-child(9),
+.tasks-table td:nth-child(10){min-width:110px !important;}

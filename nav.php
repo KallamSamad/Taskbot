@@ -19,18 +19,12 @@
               <a class="nav-link text-white" href="index.php">Home</a>
             </li>
 
-            <li class="nav-item">
-              <a class="nav-link text-white" href="#">FAQ</a>
-            </li>
+     
 
             <li class="nav-item">
-              <a class="nav-link text-white" href="#">Accessibility</a>
+              <a class="nav-link text-white" href="accessibility.php?page=alltasks">Accessibility</a>
             </li>
-
-            <li class="nav-item">
-              <a class="nav-link text-white" href="#">Contact</a>
-            </li>
-
+ 
         <?php else: ?>
 
             <?php if ($_SESSION['role'] === 'Staff'): ?>
@@ -47,6 +41,10 @@
                   <a class="nav-link text-white" href="index.php?page=addtask">Add Task</a>
                 </li>
                              <li class="nav-item">
+                  <a class="nav-link text-white" href="index.php?page=addtasklist">Add Task List</a>
+                </li>
+                     
+                             <li class="nav-item">
                   <a class="nav-link text-white" href="accessibility.php?page=alltasks">Accessibility</a>
                 </li>
 
@@ -59,9 +57,19 @@
                 <li class="nav-item">
                   <a class="nav-link text-white" href="index.php?page=alltasks">All Tasks</a>
                 </li>
+
+                <li class="nav-item">
+                  <a class="nav-link text-white" href="index.php?page=alltasklists">All Task Lists</a>
+                </li>
           
                 <li class="nav-item">
                   <a class="nav-link text-white" href="index.php?page=manageusers">Manage Users</a>
+                </li>
+                                <li class="nav-item">
+                  <a class="nav-link text-white" href="index.php?page=addtask">Add Task</a>
+                </li>
+                             <li class="nav-item">
+                  <a class="nav-link text-white" href="index.php?page=addtasklist">Add Task List</a>
                 </li>
                   <li class="nav-item">
                   <a class="nav-link text-white" href="accessibility.php?page=alltasks">Accessibility</a>

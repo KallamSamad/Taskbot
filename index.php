@@ -85,13 +85,26 @@ if (isset($_SESSION['username']) && !isset($_SESSION['role'])) {
     $_SESSION['userId'] = isset($row['UserID']) ? (int)$row['UserID'] : null;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+(function () {
+  const keys = ["a11y-dark", "a11y-large-text", "a11y-contrast"];
+  const root = document.documentElement;  
+  for (const k of keys) {
+    const on = localStorage.getItem(k) === "true";
+    root.classList.toggle(k, on);
+  }
+})();
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="/TaskBot/a11y.css">
+<script src="/TaskBot/a11y.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
     <title>TaskBot</title>
 </head>
@@ -155,15 +168,24 @@ if (isset($_SESSION['username']) && !isset($_SESSION['role'])) {
 
                 if ($role === 'Admin') {
                     switch ($page) {
+                        case 'updateuser': require 'updateuser.php'; break;
+                        case 'updatetask': require 'updatetask.php'; break;
+                         case 'updatetasklist': require 'updatetasklist.php'; break;
+                        case 'alltasklists': require 'admin_alltasklists.php'; break;
                         case 'alltasks':    require 'admin_alltasks.php'; break;
                         case 'manageusers': require 'admin_manageusers.php'; break;
+                        case 'addtask': require 'admin_addtask.php'; break;
+                        case 'addtasklist': require 'admin_addtasklist.php'; break;
                         default:            require 'admin_home.php'; break;
                     }
                 } else {
                     switch ($page) {
+                        case 'updatetask': require 'updatetask.php'; break;
+                        case 'updatetasklist': require 'updatetasklist.php'; break;
                         case 'tasks':   require 'stafftasks.php'; break;
                         case 'lists':   require 'stafflists.php'; break;
                         case 'addtask': require 'staff_addtask.php'; break;
+                        case 'addtasklist': require 'staff_addtasklist.php'; break;
                         default:        require 'staff.php'; break;
                     }
                 }
@@ -207,9 +229,7 @@ if (isset($_SESSION['username']) && !isset($_SESSION['role'])) {
 </div>
 
 <div class="footer">By Kallam Samad 2026</div>
-
+ 
 </body>
 </html>
-<?php
-$db->close();
-?>
+ 

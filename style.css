@@ -439,3 +439,35 @@ body{
   max-width: 400px;
   margin: 40px auto;
 }
+ 
+.action-btn.danger, .btn{
+  background:rgb(91,0,0) !important;    
+  color:white !important;
+display:inline-block;
+  padding:10px 16px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:600;
+  white-space:nowrap;
+}
+
+ .task-checkboxes {
+    max-height: 200px;
+    overflow-y: auto;
+    background: #f4f4f4;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.task-option {
+    display: block;
+    margin-bottom: 6px;
+}
+
+nav{
+    font-size: medium;
+}
+.tasks-table{
+  table-layout: auto !important;
+}

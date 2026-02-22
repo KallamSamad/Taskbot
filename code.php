@@ -1,7 +1,7 @@
 <?php
 session_start();
 $message = '';
-require_once "db.php";
+
 require_once "function.php";
 
 $id = $_SESSION['id'] ?? null;

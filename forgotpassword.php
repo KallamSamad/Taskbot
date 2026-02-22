@@ -2,7 +2,6 @@
 session_start();
 
 $message = '';
-require_once "db.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -27,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$db->close();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

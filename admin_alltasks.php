@@ -1,43 +1,26 @@
 <?php
+require_once "db.php";
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['username']) || ($_SESSION['role'] ?? '') !== 'Admin') {
     header("Location: index.php");
     exit();
 }
 
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Staff') {
-    header("Location: index.php?page=home");
-    exit();
-}
-
-if (!isset($_SESSION['userId'])) {
-    echo "<p>Session missing userId. Log out and log in again.</p>";
-    exit();
-}
-
-$db = new SQLite3("C:/xampp/htdocs/TaskBot/database.db");
+ 
 $db->exec("PRAGMA foreign_keys = ON;");
-
-$userId = (int)$_SESSION['userId'];
 
 $records_per_page = 4;
 $current_page = isset($_GET['p']) ? (int)$_GET['p'] : 1;
 if ($current_page < 1) $current_page = 1;
 $offset = ($current_page - 1) * $records_per_page;
 
-$countStmt = $db->prepare("SELECT COUNT(*) AS total FROM Task WHERE LastUpdatedBy = :uid");
-$countStmt->bindValue(":uid", $userId, SQLITE3_INTEGER);
-$countRes = $countStmt->execute();
+$countRes = $db->query("SELECT COUNT(*) AS total FROM Task WHERE IsArchived = 0");
 $countRow = $countRes->fetchArray(SQLITE3_ASSOC);
-
-$countRes->finalize();
-$countStmt->close();
-
-$total_records = (int)($countRow['total'] ?? 0);
-$total_pages = max(1, (int)ceil($total_records / $records_per_page));
+$total_records = (int)$countRow['total'];
+$total_pages = max(1, ceil($total_records / $records_per_page));
 
 $stmt = $db->prepare("
     SELECT
@@ -51,20 +34,18 @@ $stmt = $db->prepare("
         T.Priority,
         T.Status
     FROM Task T
-    INNER JOIN Users U ON U.UserID = T.LastUpdatedBy
-    WHERE T.LastUpdatedBy = :uid
-    ORDER BY T.DueDate IS NULL, T.DueDate ASC, T.TaskID DESC
+    LEFT JOIN Users U ON U.UserID = T.LastUpdatedBy
+    WHERE T.IsArchived = 0
+    ORDER BY T.UpdatedAt DESC
     LIMIT :limit OFFSET :offset
 ");
 
-$stmt->bindValue(":uid", $userId, SQLITE3_INTEGER);
 $stmt->bindValue(":limit", $records_per_page, SQLITE3_INTEGER);
 $stmt->bindValue(":offset", $offset, SQLITE3_INTEGER);
 
 $result = $stmt->execute();
 
-echo "<h1 class='page-title'>My Tasks</h1>";
-
+echo "<h1 class='page-title'>All Tasks</h1>";
 echo "<div class='table-wrap'>";
 echo "<table class='tasks-table'>";
 
@@ -87,25 +68,24 @@ echo "
 ";
 
 $hasRows = false;
+
 while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
     $hasRows = true;
 
-    $name = htmlspecialchars($row['DisplayName'] ?? '');
-    $taskId = (int)($row['TaskID'] ?? 0);
+    $name = htmlspecialchars($row['DisplayName'] ?? 'Unknown');
+    $taskId = (int)$row['TaskID'];
 
-    $title = htmlspecialchars($row['TaskTitle'] ?? '');
-    $desc = htmlspecialchars($row['Description'] ?? '');
-    $created = htmlspecialchars($row['CreateDate'] ?? '');
-    $due = htmlspecialchars($row['DueDate'] ?? '');
-    $updated = htmlspecialchars($row['UpdatedAt'] ?? '');
+    $title = htmlspecialchars($row['TaskTitle']);
+    $desc = htmlspecialchars($row['Description']);
+    $created = htmlspecialchars($row['CreateDate']);
+    $due = htmlspecialchars($row['DueDate']);
+    $updated = htmlspecialchars($row['UpdatedAt']);
 
-    $priorityRaw = trim((string)($row['Priority'] ?? ''));
-    $priority = htmlspecialchars($priorityRaw);
-    $priorityClass = 'priority-' . strtolower(preg_replace('/\s+/', '-', $priorityRaw));
+    $priorityRaw = trim((string)$row['Priority']);
+    $priorityClass = 'priority-' . strtolower($priorityRaw);
 
-    $statusRaw = trim((string)($row['Status'] ?? ''));
-    $status = htmlspecialchars($statusRaw);
-    $statusClass = 'status-' . strtolower(preg_replace('/\s+/', '-', $statusRaw));
+    $statusRaw = trim((string)$row['Status']);
+    $statusClass = 'status-' . strtolower($statusRaw);
 
     echo "<tr>
         <td>{$name}</td>
@@ -114,14 +94,15 @@ while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
         <td>{$created}</td>
         <td>{$due}</td>
         <td>{$updated}</td>
-        <td class='{$priorityClass}'>{$priority}</td>
-        <td class='{$statusClass}'>{$status}</td>
+        <td class='{$priorityClass}'>{$priorityRaw}</td>
+        <td class='{$statusClass}'>{$statusRaw}</td>
 
         <td>
           <form method='POST' action='index.php?page=updatetask'>
             <input type='hidden' name='TaskID' value='{$taskId}'>
             <button class='btn' type='submit'>Update</button>
           </form>
+          
         </td>
 
         <td>
@@ -137,9 +118,6 @@ if (!$hasRows) {
     echo "<tr><td colspan='10'>No tasks found.</td></tr>";
 }
 
-$result->finalize();
-$stmt->close();
-
 echo "</tbody></table>";
 echo "</div>";
 
@@ -147,21 +125,25 @@ echo "<div class='pagination'>";
 
 if ($current_page > 1) {
     $prev = $current_page - 1;
-    echo "<a href='index.php?page=tasks&p={$prev}'>Previous</a>";
+    echo "<a href='index.php?page=alltasks&p={$prev}'>Previous</a>";
 }
 
 for ($i = 1; $i <= $total_pages; $i++) {
     if ($i === $current_page) {
         echo "<strong>{$i}</strong>";
     } else {
-        echo "<a href='index.php?page=tasks&p={$i}'>{$i}</a>";
+        echo "<a href='index.php?page=alltasks&p={$i}'>{$i}</a>";
     }
 }
 
 if ($current_page < $total_pages) {
     $next = $current_page + 1;
-    echo "<a href='index.php?page=tasks&p={$next}'>Next</a>";
+    echo "<a href='index.php?page=alltasks&p={$next}'>Next</a>";
 }
 
 echo "</div>";
+
+$result->finalize();
+$stmt->close();
+ 
 ?>
