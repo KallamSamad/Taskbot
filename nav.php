@@ -6,10 +6,7 @@
     <button class="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation">
+            data-bs-target="#navbarNav">
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -18,7 +15,6 @@
 
         <?php if (!isset($_SESSION['username'])): ?>
 
- 
             <li class="nav-item">
               <a class="nav-link text-white" href="index.php">Home</a>
             </li>
@@ -39,17 +35,19 @@
 
             <?php if ($_SESSION['role'] === 'Staff'): ?>
 
- 
                 <li class="nav-item">
-                  <a class="nav-link text-white" href="#">My Tasks</a>
+                  <a class="nav-link text-white" href="index.php?page=tasks">My Tasks</a>
                 </li>
 
                 <li class="nav-item">
-                  <a class="nav-link text-white" href="#">Add Task</a>
+                  <a class="nav-link text-white" href="index.php?page=lists">Task List</a>
                 </li>
-
+    
                 <li class="nav-item">
-                  <a class="nav-link text-white" href="viewProfile.php">Profile</a>
+                  <a class="nav-link text-white" href="index.php?page=addtask">Add Task</a>
+                </li>
+                             <li class="nav-item">
+                  <a class="nav-link text-white" href="accessibility.php?page=alltasks">Accessibility</a>
                 </li>
 
                 <li class="nav-item">
@@ -58,15 +56,16 @@
 
             <?php elseif ($_SESSION['role'] === 'Admin'): ?>
 
- 
                 <li class="nav-item">
-                  <a class="nav-link text-white" href="#">All Tasks</a>
+                  <a class="nav-link text-white" href="index.php?page=alltasks">All Tasks</a>
                 </li>
-
+          
                 <li class="nav-item">
-                  <a class="nav-link text-white" href="#">Manage Users</a>
+                  <a class="nav-link text-white" href="index.php?page=manageusers">Manage Users</a>
                 </li>
-
+                  <li class="nav-item">
+                  <a class="nav-link text-white" href="accessibility.php?page=alltasks">Accessibility</a>
+                </li>
                 <li class="nav-item">
                   <a class="nav-link text-white" href="logout.php">Logout</a>
                 </li>

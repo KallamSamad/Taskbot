@@ -1,8 +1,6 @@
 <?php 
 session_start();
-$db = new SQLite3("database.db");
-$db->exec("PRAGMA foreign_keys = ON;");
-
+require_once "db.php";
 if($db){
     echo "Connection successful";
 }
@@ -175,3 +173,4 @@ if (isset($_POST['adduser'])) {
 <div class="footer">By Kallam Samad 2026 </div>
 </body>
 </html>
+<?php $db->close(); ?>

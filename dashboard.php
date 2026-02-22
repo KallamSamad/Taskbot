@@ -1,5 +1,5 @@
 <?php
-$db = new SQLite3("C:/xampp/htdocs/TaskBot/database.db");
+require_once "db.php";
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();

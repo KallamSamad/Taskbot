@@ -1,8 +1,7 @@
 <?php
 session_start();
 $message = '';
-$db = new SQLite3("C:/xampp/htdocs/TaskBot/database.db");
-$db->exec("PRAGMA foreign_keys = ON;");
+require_once "db.php";
 require_once "function.php";
 
 $id = $_SESSION['id'] ?? null;

@@ -1,32 +1,33 @@
-
-<?php 
- 
+<?php
 session_start();
-$message=' ';
-$db = new SQLite3("C:/xampp/htdocs/TaskBot/database.db");
-$db->exec("PRAGMA foreign_keys = ON;");
 
- 
+$message = '';
+require_once "db.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-     
+
     $email = $_POST['email'] ?? '';
-    $id=$db->prepare("SELECT UserID FROM Users WHERE Email=:email;");
-    $id->bindValue(":email",$email, SQLITE3_TEXT);
-    $result = $id->execute();   
+
+    $id = $db->prepare("SELECT UserID FROM Users WHERE Email = :email LIMIT 1;");
+    $id->bindValue(":email", $email, SQLITE3_TEXT);
+
+    $result = $id->execute();
     $row = $result->fetchArray(SQLITE3_ASSOC);
-    if ($row){
+
+    $result->finalize();
+    $id->close();
+
+    if ($row) {
         $_SESSION['id'] = (int)$row['UserID'];
+        $db->close();
         header("Location: code.php");
-
-    }else{
-    $message = "Email Not Found"; 
-
-
+        exit();
+    } else {
+        $message = "Email Not Found";
     }
-                
 }
 
+$db->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
