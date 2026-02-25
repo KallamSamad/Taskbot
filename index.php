@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+//sasassafeSDFa
 $message = '';
 $flash = '';
 
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['LoginButton'])) {
     $stmt->close();
 
     if (!$row) {
-        $message = "No user found";
+        $message = "Incorrect Username or Password";
     } else {
         if (password_verify($password, $row["HashedPassword"])) {
             $_SESSION['username'] = $row['Username'];
