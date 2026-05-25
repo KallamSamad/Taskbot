@@ -1,5 +1,7 @@
 <?php 
 session_start();
+$message = '';
+$flash = '';
 require_once "db.php";
 if($db){
     echo "Connection successful";
@@ -90,9 +92,10 @@ if (isset($_POST['adduser'])) {
             $_POST['username'],
             $_POST['pw']
         );
+    $_SESSION['flash_success'] = "Account creation is successful. You can now log in.";
+    header("Location: index.php");
+    exit();
 
-        header("Location: index.php");
-        exit;
     }
 }
 ?>
@@ -170,7 +173,7 @@ if (isset($_POST['adduser'])) {
 
         </div>
         </div>
-<div class="footer">By Kallam Samad 2026 </div>
+ <?php require_once "footer.php"?>
 </body>
 </html>
 <?php $db->close(); ?>

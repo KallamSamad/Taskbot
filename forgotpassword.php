@@ -103,6 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <p class="paragraph">Not got an account? <a style="color:maroon" href="signup.php">Sign up</a></p>
         </div>
         </div>
-<div class="footer">By Kallam Samad 2026 </div>
 </body>
+ <?php require_once "footer.php"?>
+
 </html>

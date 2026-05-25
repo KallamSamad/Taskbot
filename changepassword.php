@@ -139,7 +139,7 @@ $db->close();
       </form>
     </div>
   </div>
-
-  <script defer src="/TaskBot/a11y.js"></script>
 </body>
+   <?php require_once "footer.php"?>
+
 </html>

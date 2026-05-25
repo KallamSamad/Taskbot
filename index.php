@@ -1,11 +1,21 @@
 <?php
 session_start();
-//sasassafeSDFa
-$message = '';
-$flash = '';
-
 require_once "db.php";
+
+/* =========================
+   FLASH MESSAGES
+========================= */
+$flash_success = $_SESSION['flash_success'] ?? '';
+$flash_error   = $_SESSION['flash_error'] ?? '';
+unset($_SESSION['flash_success'], $_SESSION['flash_error']);
+
+/* =========================
+   LOGIN HANDLER
+========================= */
+$message = '';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['LoginButton'])) {
+
     $usernameIn = $_POST['username'] ?? "";
     $password   = $_POST['password'] ?? "";
 
@@ -15,8 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['LoginButton'])) {
         WHERE Username = :username
         LIMIT 1
     ");
-    $stmt->bindValue(":username", $usernameIn, SQLITE3_TEXT);
 
+    $stmt->bindValue(":username", $usernameIn, SQLITE3_TEXT);
     $result = $stmt->execute();
     $row = $result->fetchArray(SQLITE3_ASSOC);
 
@@ -26,9 +36,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['LoginButton'])) {
     if (!$row) {
         $message = "Incorrect Username or Password";
     } else {
+
         if (password_verify($password, $row["HashedPassword"])) {
+
             $_SESSION['username'] = $row['Username'];
 
+            // fetch role + user id
             $stmt2 = $db->prepare("
                 SELECT C.UserID, R.RoleType
                 FROM Credentials AS C
@@ -37,8 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['LoginButton'])) {
                 WHERE C.Username = :username
                 LIMIT 1
             ");
-            $stmt2->bindValue(":username", $_SESSION['username'], SQLITE3_TEXT);
 
+            $stmt2->bindValue(":username", $_SESSION['username'], SQLITE3_TEXT);
             $result2 = $stmt2->execute();
             $row2 = $result2->fetchArray(SQLITE3_ASSOC);
 
@@ -48,22 +61,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['LoginButton'])) {
             $_SESSION['role'] = $row2['RoleType'] ?? 'Staff';
             $_SESSION['userId'] = isset($row2['UserID']) ? (int)$row2['UserID'] : null;
 
-            $db->close();
             header("Location: index.php?page=home");
             exit;
+
         } else {
             $message = "Your password is incorrect!";
         }
     }
 }
 
-if (!empty($_SESSION['flash'])) {
-    $flash = $_SESSION['flash'];
-    unset($_SESSION['flash']);
-}
-
+/* =========================
+   ENSURE ROLE EXISTS
+========================= */
 if (isset($_SESSION['username']) && !isset($_SESSION['role'])) {
-    $username = $_SESSION['username'];
 
     $stmt = $db->prepare("
         SELECT C.UserID, R.RoleType
@@ -73,8 +83,8 @@ if (isset($_SESSION['username']) && !isset($_SESSION['role'])) {
         WHERE C.Username = :username
         LIMIT 1
     ");
-    $stmt->bindValue(":username", $username, SQLITE3_TEXT);
 
+    $stmt->bindValue(":username", $_SESSION['username'], SQLITE3_TEXT);
     $result = $stmt->execute();
     $row = $result->fetchArray(SQLITE3_ASSOC);
 
@@ -89,49 +99,75 @@ if (isset($_SESSION['username']) && !isset($_SESSION['role'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script>
-(function () {
-  const keys = ["a11y-dark", "a11y-large-text", "a11y-contrast"];
-  const root = document.documentElement;  
-  for (const k of keys) {
-    const on = localStorage.getItem(k) === "true";
-    root.classList.toggle(k, on);
-  }
-})();
-</script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="/TaskBot/a11y.css">
-<script src="/TaskBot/a11y.js"></script>
+    <link rel="stylesheet" href="/TaskBot/a11y.css">
+    <script src="/TaskBot/a11y.js"></script>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+
     <title>TaskBot</title>
+
+    <!-- A11Y INIT -->
+    <script>
+    (function () {
+      const keys = ["a11y-dark", "a11y-large-text", "a11y-contrast"];
+      const root = document.documentElement;
+
+      for (const k of keys) {
+        const on = localStorage.getItem(k) === "true";
+        root.classList.toggle(k, on);
+      }
+    })();
+    </script>
+
 </head>
+
 <body>
 
-<?php if (!empty($message)) echo "<p class='text-danger' style='margin:10px;'>" . htmlspecialchars($message) . "</p>"; ?>
-<?php if (!empty($flash))   echo "<p class='text-success' style='margin:10px;'>" . htmlspecialchars($flash) . "</p>"; ?>
+<!-- FLASH MESSAGES -->
+<?php if (!empty($flash_error)): ?>
+  <div class="alert alert-danger m-2">
+    <?= htmlspecialchars($flash_error) ?>
+  </div>
+<?php endif; ?>
+
+<?php if (!empty($flash_success)): ?>
+  <div class="alert alert-success m-2">
+    <?= htmlspecialchars($flash_success) ?>
+  </div>
+<?php endif; ?>
+
+<?php if (!empty($message)): ?>
+  <p class="text-danger m-2">
+    <?= htmlspecialchars($message) ?>
+  </p>
+<?php endif; ?>
 
 <div class="header">
 
-    <div class="left">
-        <img src="Assets/Images/waterfall.webp" alt="Picture of a waterfall" class="sr-only">
-    </div>
+    <!-- LEFT PANEL -->
+    <div class="left"></div>
 
+    <!-- MAIN CONTENT -->
     <div class="middle">
+
         <div class="quadlayer">
 
             <div class="layer1">
-                <h1 style="text-align:center"><b>Taskbot</b></h1>
-                <img class="logo" src="Assets/Images/logo.png" alt="logo of a green robot with a check marked">
+                <h1><b>Taskbot</b></h1>
+                <img class="logo" src="Assets/Images/logo.png" alt="TaskBot logo">
             </div>
 
             <?php require_once 'nav.php'; ?>
 
             <?php if (!isset($_SESSION['username'])): ?>
 
-                <div class="layer2">
+                                 <div class="layer2">
                     <h2 style="padding-top:30px;">What is Taskbot?</h2>
                     <p class="paragraph">Taskbot is a very intuitive and structured way of organising tasks. Be it day-to-day "to do lists" to planning a project for your work. If you want an effiecnt way of organising your tasks, Taskbot is the app!</p>
                 </div>
@@ -170,23 +206,23 @@ if (isset($_SESSION['username']) && !isset($_SESSION['role'])) {
                     switch ($page) {
                         case 'updateuser': require 'updateuser.php'; break;
                         case 'updatetask': require 'updatetask.php'; break;
-                         case 'updatetasklist': require 'updatetasklist.php'; break;
+                        case 'updatetasklist': require 'updatetasklist.php'; break;
                         case 'alltasklists': require 'admin_alltasklists.php'; break;
-                        case 'alltasks':    require 'admin_alltasks.php'; break;
+                        case 'alltasks': require 'admin_alltasks.php'; break;
                         case 'manageusers': require 'admin_manageusers.php'; break;
                         case 'addtask': require 'admin_addtask.php'; break;
                         case 'addtasklist': require 'admin_addtasklist.php'; break;
-                        default:            require 'admin_home.php'; break;
+                        default: require 'admin_home.php'; break;
                     }
                 } else {
                     switch ($page) {
                         case 'updatetask': require 'updatetask.php'; break;
                         case 'updatetasklist': require 'updatetasklist.php'; break;
-                        case 'tasks':   require 'stafftasks.php'; break;
-                        case 'lists':   require 'stafflists.php'; break;
+                        case 'tasks': require 'stafftasks.php'; break;
+                        case 'lists': require 'stafflists.php'; break;
                         case 'addtask': require 'staff_addtask.php'; break;
                         case 'addtasklist': require 'staff_addtasklist.php'; break;
-                        default:        require 'staff.php'; break;
+                        default: require 'staff.php'; break;
                     }
                 }
                 ?>
@@ -196,40 +232,42 @@ if (isset($_SESSION['username']) && !isset($_SESSION['role'])) {
         </div>
     </div>
 
+    <!-- RIGHT PANEL -->
     <div class="right">
+
         <?php if (!isset($_SESSION['username'])): ?>
 
-            <h1 class="signinhead">Sign In </h1>
+            <h1 class="signinhead">Sign In</h1>
+
             <div class="signin">
                 <form method="POST">
-                    <label for="username">Username</label>
-                    <input name="username" type="text" required placeholder="Enter Username Here">
 
-                    <label for="password">Password</label>
+                    <label>Username</label>
+                    <input name="username" type="text" required>
+
+                    <label>Password</label>
                     <input name="password" type="password"
                            pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$"
-                           required
-                           oninvalid="this.setCustomValidity('Password must be at least 8 characters and include an uppercase letter, a number, and a special character.')"
-                           oninput="this.setCustomValidity('')"
-                           placeholder="Enter password here">
+                           required>
+
                     <input name="LoginButton" class="submitbtn" type="submit" value="Submit">
+
                 </form>
             </div>
-
-            <p class="paragraph">Not got an account? <a style="color:maroon" href="signup.php">Sign up</a></p>
-            <p class="paragraph"><a style="color:maroon;" href="forgotpassword.php">Forgot Passsword?</a></p>
 
         <?php else: ?>
 
             <?php require 'dashboard.php'; ?>
 
         <?php endif; ?>
+
     </div>
 
 </div>
 
-<div class="footer">By Kallam Samad 2026</div>
- 
+<?php require_once "footer.php"; ?>
+
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
- 

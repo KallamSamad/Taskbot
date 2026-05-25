@@ -22,8 +22,7 @@ if (!isset($_POST['TaskID']) && !isset($_GET['TaskID'])) {
 
 $targetTaskId = isset($_POST['TaskID']) ? (int)$_POST['TaskID'] : (int)$_GET['TaskID'];
 $message = '';
-
-/* ---------- Save update ---------- */
+ 
 if (isset($_POST['saveTask'])) {
 
     $title    = trim((string)($_POST['title'] ?? ''));
@@ -46,8 +45,7 @@ if (isset($_POST['saveTask'])) {
     if ($title === '' || $desc === '') {
         $message = "<p class='text-danger'>Title and description are required.</p>";
     } else {
-
-        // Staff can only update their own tasks
+ 
         if ($role === 'Admin') {
             $update = $db->prepare("
                 UPDATE Task
@@ -101,7 +99,7 @@ if (isset($_POST['saveTask'])) {
         if ($res === false) {
             $message = "<p class='text-danger'>DB error: " . htmlspecialchars($db->lastErrorMsg()) . "</p>";
         } else {
-            // SQLite UPDATE might not return a result set; no finalize needed.
+         
             $message = "<p class='text-success'>Task updated</p>";
         }
 
@@ -109,7 +107,6 @@ if (isset($_POST['saveTask'])) {
     }
 }
 
-/* ---------- Load task ---------- */
 if ($role === 'Admin') {
     $stmt = $db->prepare("
         SELECT TaskID, TaskTitle, Description, Priority, Status, DueDate, TaskListID
@@ -139,7 +136,7 @@ if (!$task) {
     exit();
 }
 
-/* ---------- Load task lists for dropdown ---------- */
+
 $listsStmt = $db->prepare("
     SELECT TaskListID, ListTitle
     FROM TaskList
