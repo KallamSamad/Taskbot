@@ -233,35 +233,63 @@ if (isset($_SESSION['username']) && !isset($_SESSION['role'])) {
     </div>
 
     <!-- RIGHT PANEL -->
-    <div class="right">
+<div class="right">
 
-        <?php if (!isset($_SESSION['username'])): ?>
+    <?php if (!isset($_SESSION['username'])): ?>
 
-            <h1 class="signinhead">Sign In</h1>
+        <!-- MOBILE LOGIN TOGGLER -->
+        <button class="login-toggle d-lg-none"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mobileLogin">
+            ☰ Login Panel
+        </button>
+
+        <div class="collapse d-lg-block" id="mobileLogin">
+
+            <h1 class="signinhead">Sign In </h1>
 
             <div class="signin">
                 <form method="POST">
 
-                    <label>Username</label>
-                    <input name="username" type="text" required>
+                    <label for="username">Username</label>
+                    <input name="username" type="text" required placeholder="Enter Username Here">
 
-                    <label>Password</label>
-                    <input name="password" type="password"
-                           pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$"
-                           required>
+                    <label for="password">Password</label>
 
-                    <input name="LoginButton" class="submitbtn" type="submit" value="Submit">
+                    <input name="password"
+                           type="password"
+                           required
+                           placeholder="Enter password here">
+
+                    <input name="LoginButton"
+                           class="submitbtn"
+                           type="submit"
+                           value="Submit">
 
                 </form>
             </div>
 
-        <?php else: ?>
+            <p class="paragraph">
+                Not got an account?
+                <a style="color:maroon" href="signup.php">Sign up</a>
+            </p>
 
-            <?php require 'dashboard.php'; ?>
+            <p class="paragraph">
+                <a style="color:maroon;" href="forgotpassword.php">
+                    Forgot Password?
+                </a>
+            </p>
 
-        <?php endif; ?>
+        </div>
 
-    </div>
+    <?php else: ?>
+
+        <?php require 'dashboard.php'; ?>
+
+    <?php endif; ?>
+
+</div>
 
 </div>
 
