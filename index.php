@@ -105,8 +105,8 @@ if (isset($_SESSION['username']) && !isset($_SESSION['role'])) {
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="/TaskBot/a11y.css">
-    <script src="/TaskBot/a11y.js"></script>
+    <link rel="stylesheet" href="a11y.css">
+    <script src="a11y.js"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
 

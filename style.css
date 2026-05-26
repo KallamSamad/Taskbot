@@ -296,19 +296,19 @@ body{
   border-radius: 10px;
   overflow: hidden;
   font-family: 'Inter', sans-serif;
-  table-layout: fixed;
+  table-layout: auto;
 }
+
 
 .tasks-table th,
 .tasks-table td{
-  padding: 10px 12px;
-  border-bottom: 1px solid rgba(0,0,0,0.12);
-  vertical-align: top;
-  word-wrap: break-word;
-  overflow-wrap: anywhere;
-  white-space: normal;
-  font-size: 0.95rem;
-  color: rgb(91,0,0);
+  padding:10px 12px;
+  border-bottom:1px solid rgba(0,0,0,0.12);
+  vertical-align:top;
+  font-size:0.95rem;
+  color:rgb(91,0,0);
+  white-space:normal;
+  word-break:break-word;
 }
 
 .tasks-table thead th{
@@ -325,16 +325,6 @@ body{
   background: #efd553;
 }
 
-.tasks-table td:nth-child(1){ width: 12%; }
-.tasks-table td:nth-child(2){ width: 12%; }
-.tasks-table td:nth-child(3){ width: 24%; }
-.tasks-table td:nth-child(4){ width: 9%; }
-.tasks-table td:nth-child(5){ width: 9%; }
-.tasks-table td:nth-child(6){ width: 9%; }
-.tasks-table td:nth-child(7){ width: 6%; }
-.tasks-table td:nth-child(8){ width: 7%; }
-.tasks-table td:nth-child(9){ width: 6%; }
-.tasks-table td:nth-child(10){ width: 6%; }
 
 .tasks-table td:nth-child(9) form,
 .tasks-table td:nth-child(10) form{
@@ -366,6 +356,10 @@ body{
 .tasks-table button:focus{
   outline: none;
   filter: brightness(0.95);
+}
+.table-wrapper{
+  overflow-x:auto;
+  width:100%;
 }
 
 .pagination{
@@ -531,23 +525,35 @@ nav{
 
 } 
 
-@media (max-width:768px){
+@media (max-width: 768px){
+
+  body{
+    overflow-x:hidden;
+  }
 
   .header{
     flex-direction:column;
+    min-height:auto;
+  }
+
+  .left,
+  .middle,
+  .right{
+    width:100%;
+    flex:none;
   }
 
   .left{
-    order: 1;
-    width: 100%;
+    order:1;
+    height:180px;
+    min-height:180px;
   }
+
   .signin{
     order:2;
-    width: 100%;
-  }
-  .middle{
-    order:4;
     width:100%;
+    max-width:100%;
+    padding:15px;
   }
 
   .right{
@@ -555,7 +561,123 @@ nav{
     width:100%;
     min-height:auto;
   }
-.login-toggle{
+
+  .middle{
+    order:4;
+    width:100%;
+    overflow-x:hidden;
+  }
+
+  .trilayer{
+    gap:20px;
+    padding:10px;
+  }
+
+  .layer1{
+    flex-direction:column;
+    gap:12px;
+    text-align:center;
+    padding:15px;
+  }
+
+  .dead,
+  .group{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:6px;
+  }
+
+  .logo{
+    width:100px;
+    height:100px;
+  }
+
+  .paragraph{
+    padding-left:15px;
+    padding-right:15px;
+    font-size:0.95rem;
+    line-height:1.5;
+  }
+
+  .profile-info{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:5px;
+    padding:12px;
+  }
+
+  .dashboard{
+    padding:10px;
+  }
+
+  .dashboard a{
+    padding:14px;
+    font-size:0.95rem;
+  }
+
+  .table-wrap{
+    overflow-x:auto;
+    padding:10px;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .tasks-table{
+    min-width:900px;
+    font-size:0.8rem;
+  }
+
+  .tasks-table th,
+  .tasks-table td{
+    padding:8px;
+    font-size:0.78rem;
+    white-space:nowrap;
+  }
+
+  .tasks-table td:nth-child(3){
+    white-space:normal;
+    min-width:200px;
+  }
+
+  .tasks-table button{
+    padding:6px 10px;
+    font-size:0.75rem;
+  }
+
+  .pagination{
+    padding:10px;
+    gap:6px;
+  }
+
+  .pagination a,
+  .pagination strong{
+    padding:6px 10px;
+    font-size:0.8rem;
+  }
+
+  .signin,
+  .verify,
+  .addform{
+    max-width:100%;
+    padding:15px;
+  }
+
+  .signin input,
+  .verify input,
+  .addform input,
+  .addform textarea,
+  .addform select{
+    font-size:16px;
+  }
+
+  .submitbtn,
+  .btn,
+  .action-btn.danger{
+    width:100%;
+    font-size:1rem !important;
+    padding:12px;
+  }
+
+  .login-toggle{
     width:100%;
     background-color:rgb(91,0,0);
     color:#E6F0EC;
@@ -563,9 +685,11 @@ nav{
     padding:15px;
     font-size:large;
     font-weight:bold;
-}
+    border-radius:8px;
+  }
 
-.login-toggle:hover{
+  .login-toggle:hover{
     opacity:0.9;
-}
+  }
+
 }
