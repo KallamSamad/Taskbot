@@ -16,8 +16,9 @@ $message = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['LoginButton'])) {
 
-    $usernameIn = $_POST['username'] ?? "";
-    $password   = $_POST['password'] ?? "";
+    
+    $usernameIn = strtolower(trim($_POST['username'] ?? ''));
+    $password   = $_POST['password'] ?? '';
 
     $stmt = $db->prepare("
         SELECT Username, HashedPassword

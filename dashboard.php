@@ -45,9 +45,9 @@ if ($username === null) {
 
 <div class="dashboard">
   <ul>
-    <li><a href="/TaskBot/viewprofile.php">View Profile</a></li>
-    <li><a href="/TaskBot/editprofile.php">Edit Profile</a></li>
-    <li><a href="/TaskBot/changepassword.php">Change Password</a></li>
+    <li><a href="viewprofile.php">View Profile</a></li>
+    <li><a href="editprofile.php">Edit Profile</a></li>
+    <li><a href="changepassword.php">Change Password</a></li>
     <li><a href="logout.php">Logout</a></li>
   </ul>
 </div>

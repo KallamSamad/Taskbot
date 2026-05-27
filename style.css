@@ -16,7 +16,6 @@ body{
     background-size:cover;
     background-position:center;
     background-repeat:no-repeat;
-    border-radius:5px;
     border:solid 1px;
 }
 
@@ -685,7 +684,6 @@ nav{
     padding:15px;
     font-size:large;
     font-weight:bold;
-    border-radius:8px;
   }
 
   .login-toggle:hover{
